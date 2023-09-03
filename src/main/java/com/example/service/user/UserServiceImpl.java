@@ -85,8 +85,10 @@ public class UserServiceImpl implements UserService {
 
 
     @Override
-    public Optional<UserDTOResponse> findUserById(Long id) {
-        return Optional.empty();
+    public UserDTOResponse findUserById(Long id) {
+        User user = userRepository.findById(id).orElseThrow(() -> new NotFoundException("User is not exits"));
+
+        return mapperToUserDTO(user);
     }
 
     @Override
@@ -140,6 +142,8 @@ public class UserServiceImpl implements UserService {
                 .phoneNumber(user.getPhoneNumber())
                 .image(user.getImage())
                 .role(String.valueOf(user.getRole()))
+                .shoppingCart(user.getShoppingCart())
+                .orderList(user.getOrderList())
                 .build();
     }
 

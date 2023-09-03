@@ -13,20 +13,23 @@ import java.util.List;
 @Setter
 @ToString
 @Builder
-@Table(name = "category", uniqueConstraints = {
-        @UniqueConstraint(columnNames = {"category_name"})
-})
-public class Category {
+@Table(name = "image")
+public class Image {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "category_id")
+    @Column(name = "image_id")
     private Long id;
+    @Lob
+    private String url1;
+    @Lob
+    private String url2;
+    @Lob
+    private String url3;
 
-    @Column(name = "category_name")
-    private String name;
-
-    @OneToMany(mappedBy = "category")
-    private List<Product> product;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "product_id")
+    @JsonIgnore
+    private Product product;
 
 }

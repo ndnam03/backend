@@ -16,7 +16,7 @@ public interface UserService {
 
     BaseResponse createUser(UserDTOCreate userDTOCreate, MultipartFile image) throws IOException;
 
-    Optional<UserDTOResponse> findUserById(Long id);
+    UserDTOResponse findUserById(Long id);
 
     Optional<UserDTOResponse> findUserByUsername(String username);
 

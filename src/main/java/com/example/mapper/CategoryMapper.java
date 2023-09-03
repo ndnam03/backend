@@ -1,7 +1,6 @@
 package com.example.mapper;
 
 import com.example.entity.Category;
-import com.example.payload.request.category.CategoryDTOCreate;
 import com.example.payload.response.category.CategoryDTOResponse;
 
 public class CategoryMapper {

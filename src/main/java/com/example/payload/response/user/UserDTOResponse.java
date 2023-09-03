@@ -1,6 +1,10 @@
 package com.example.payload.response.user;
 
+import com.example.entity.Order;
+import com.example.entity.ShoppingCart;
 import lombok.*;
+
+import java.util.List;
 
 @Getter
 @Setter
@@ -20,4 +24,8 @@ public class UserDTOResponse {
     private String image;
 
     private String role;
+
+    private ShoppingCart shoppingCart;
+
+    private List<Order> orderList;
 }

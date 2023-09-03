@@ -1,14 +1,13 @@
 package com.example.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.List;
 
-@Data
+@Getter
+@Setter
 @Entity
 @Builder
 @NoArgsConstructor
@@ -27,6 +26,7 @@ public class User {
     @Column(name = "username")
     private String username;
 
+    @JsonIgnore
     private String password;
 
     private String address;
@@ -39,7 +39,19 @@ public class User {
 
     private String role;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Comment> comment;
+
+    @OneToOne(mappedBy = "user")
+    @JsonIgnore
+    private ShoppingCart shoppingCart;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    @JsonIgnore
+    private List<Order> orderList;
+
+
+
 
 }

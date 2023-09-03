@@ -35,6 +35,10 @@ public class BrandController {
     public ResponseEntity<BrandDTOResponse> createBrand(@RequestParam("name") String name,
                                                         @RequestParam("image") MultipartFile image) throws IOException {
 
+        if(image.isEmpty()) {
+            image = null;
+        }
+
         BrandDTOCreate brandDTOCreate = BrandDTOCreate.builder()
                 .name(name)
                 .build();

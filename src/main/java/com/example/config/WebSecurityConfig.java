@@ -4,6 +4,7 @@ import com.example.security.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.BeanIds;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -52,8 +53,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 //    protected void configure(HttpSecurity http) throws Exception {
 //        http.csrf().disable() // Vô hiệu hóa CSRF
 //                .authorizeRequests() // Phân quyền cho các yêu cầu
-////                .antMatchers("/api/auth/**").permitAll() // Cho phép tất cả mọi người truy cập vào các đường dẫn /api/v1/auth/**
-//                .antMatchers("/api/**").permitAll() // Cho phép tất cả mọi người truy cập vào các đường dẫn /api/v1/test/**
+//                .antMatchers("/api/auth/**").permitAll() // Cho phép tất cả mọi người truy cập vào các đường dẫn /api/v1/auth/**
+//                .antMatchers(HttpMethod.GET, "/api/**").permitAll() // Cho phép tất cả mọi người truy cập vào các đường dẫn /api/v1/test/**
 //                .anyRequest().authenticated(); // Các yêu cầu khác yêu cầu xác thực
 //
 //        // Thêm một lớp Filter kiểm tra jwt
@@ -65,6 +66,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.antMatcher("/**").authorizeRequests().antMatchers("/**").permitAll().anyRequest().authenticated();
         http.cors().and().csrf().disable();
+        http.addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
     }
 
 

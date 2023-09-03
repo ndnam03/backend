@@ -11,6 +11,7 @@ import lombok.NoArgsConstructor;
 @Builder
 public class UserDTOCreate {
 
+    private Long id;
     private String fullName;
 
     private String username;
