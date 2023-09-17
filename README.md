@@ -1,6 +1,7 @@
 # Clothing shop
 
-Technologies used in the construction of the project <br>
+Technologies used in the construction of the project
+
 Spring Boot
 MySQL Database
 Hibernate
